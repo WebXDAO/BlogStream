@@ -1,7 +1,7 @@
 const Header = () => {
   return (
-    <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
-      <div className="pb-5 pt-5 mx-8 sm:flex sm:items-center sm:justify-between">
+    <div>
+      <div className="pb-2 pt-2 mx-8 sm:flex sm:items-center sm:justify-between">
         <img src="./Logo.svg" alt="Blog Stream" />
         <div>
           <a href="#" className="text-base mx-4 font-medium text-gray-900">
