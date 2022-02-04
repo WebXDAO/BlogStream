@@ -1,5 +1,6 @@
 import { Fragment } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
+
 const Modal = ({ open, setOpen, title, children }) => {
   return (
     <>

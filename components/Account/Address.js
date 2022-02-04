@@ -1,19 +1,8 @@
-import { useEffect } from 'react'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+
 import { getEllipsisTxt } from '../../helpers/formatters'
 import Blockie from '../global/Blockie'
 import { useMoralis } from 'react-moralis'
-
-const styles = {
-  address: {
-    height: '36px',
-    display: 'flex',
-    gap: '5px',
-    backgroundColor: 'rgba(255, 255, 255, 0.1)',
-    borderRadius: '9px',
-    alignItems: 'center'
-  }
-}
 
 function Address(props) {
   const { account, isAuthenticated } = useMoralis()
@@ -52,7 +41,7 @@ function Address(props) {
   )
 
   return (
-    <div style={{ ...styles.address, ...props.style }}>
+    <div className='flex items-center rounded-lg gap-1 h-9 bg-white' style={{ ...props.style }}>
       {props.avatar === 'left' && <Blockie address={address} size={7} />}
       <p>{props.size ? getEllipsisTxt(address, props.size) : address}</p>
       {props.avatar === 'right' && <Blockie address={address} size={7} />}
