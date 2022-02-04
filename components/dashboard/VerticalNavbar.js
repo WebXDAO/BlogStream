@@ -1,5 +1,5 @@
 import Link from 'next/link'
-
+import Logout from '../../public/dashboard/logout.svg'
 const icons = [
   { name: 'menu', icon: './dashboard/menu.svg', link: '/dashboard' },
   { name: 'blogs', icon: './dashboard/blogs.svg', link: '#' },
@@ -25,7 +25,7 @@ const VerticalNavbar = () => {
       <div className='flex flex-col items-center gap-2'>
         {/* TODO: replace with image */}
         <div className='w-8 h-8 bg-slate-500 rounded-full'></div>
-        <img src='./dashboard/logout.svg' alt='logout' style={{ color: 'gray' }} />
+        <Logout className='text-gray-500' />
       </div>
     </div>
   )

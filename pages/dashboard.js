@@ -1,35 +1,37 @@
 import InfoCard from '../components/dashboard/InfoCard'
+
 import VerticalNavbar from '../components/dashboard/VerticalNavbar'
+// SVG's
+import Blogs from '../public/dashboard/blogs.svg'
+import Bookmark from '../public/dashboard/bookmark.svg'
+import Wallet from '../public/dashboard/wallet.svg'
+import Star from '../public/dashboard/star.svg'
 
 const Dashboard = () => {
   const info = [
     {
       name: 'Blogs',
-      icon: './dashboard/blogs.svg',
+      icon: <Blogs className='text-[#030229]' />,
       value: '178+',
-      bgcolor: '#5B93FF',
-      color: '#030229'
+      bgcolor: 'bg-[#5B93FF]'
     },
     {
       name: 'Bookmarks',
-      icon: './dashboard/bookmark.svg',
+      icon: <Bookmark className='text-[#F2C113]' />,
       value: '20+',
-      bgcolor: '#FFD66B',
-      color: '#F2C113'
+      bgcolor: 'bg-[#FFD66B]'
     },
     {
       name: 'Balance',
-      icon: './dashboard/wallet.svg',
+      icon: <Wallet className='text-[#FF8F6B]' />,
       value: '1 MATIC',
-      bgcolor: '#FF8F6B',
-      color: '#FF8F6B'
+      bgcolor: 'bg-[#FF8F6B]'
     },
     {
       name: 'Stars',
-      icon: './dashboard/star.svg',
+      icon: <Star className='text-[#605BFF]' />,
       value: '12',
-      bgcolor: '#605BFF',
-      color: '#605BFF'
+      bgcolor: 'bg-[#605BFF]'
     }
   ]
 
