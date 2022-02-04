@@ -70,17 +70,17 @@ const Hero = () => {
         </div>
         <button
           type="button"
-          className="py-2 px-8 text-center border border-transparent shadow-sm text-base font-medium rounded-md text-white bg-gradient-to-l from-fuchsia-500 to-blue-700"
+          className="py-2 px-8 text-center shadow-lg shadow-pink-200 border border-transparent text-base font-medium rounded-md text-white bg-gradient-to-l from-fuchsia-400 to-blue-500"
         >
           Read Blogs
         </button>
       </div>
       <svg
-        className="absolute -top-80 left-80"
+        className="absolute -top-80 left-96 -right-20"
         xmlns="http://www.w3.org/2000/svg"
         version="1.1"
         viewBox="0 0 800 800"
-        opacity="0.54"
+        opacity="0.35"
       >
         <defs>
           <filter
@@ -91,7 +91,7 @@ const Hero = () => {
             height="400%"
             filterUnits="objectBoundingBox"
             primitiveUnits="userSpaceOnUse"
-            colorInterpolationFilters="sRGB"
+            color-interpolation-filters="sRGB"
           >
             <feGaussianBlur
               stdDeviation="57"
@@ -107,8 +107,8 @@ const Hero = () => {
         </defs>
         <g filter="url(#bbblurry-filter)">
           <ellipse
-            rx="146"
-            ry="146"
+            rx="159.5"
+            ry="158"
             cx="497.8876010435413"
             cy="426.41238147675676"
             fill="hsla(316, 73%, 52%, 1)"
@@ -116,7 +116,7 @@ const Hero = () => {
         </g>
       </svg>
       <svg
-        className="absolute -top-20 -right-3/4"
+        className="absolute -top-20 -right-3/4 left-80"
         xmlns="http://www.w3.org/2000/svg"
         version="1.1"
         viewBox="0 0 800 800"
@@ -155,10 +155,11 @@ const Hero = () => {
         </g>
       </svg>
       <svg
-        className="absolute w-full -left-2/3 top-10"
+        className="absolute w-full -left-2/3 top-0"
         xmlns="http://www.w3.org/2000/svg"
         version="1.1"
         viewBox="0 0 800 800"
+        opacity="0.6"
       >
         <defs>
           <filter
@@ -185,8 +186,8 @@ const Hero = () => {
         </defs>
         <g filter="url(#bbblurry-filter)">
           <ellipse
-            rx="110.5"
-            ry="111.5"
+            rx="140.5"
+            ry="121.5"
             cx="537.6781616210938"
             cy="245.26055908203125"
             fill="hsla(221, 83%, 54%, 1)"
