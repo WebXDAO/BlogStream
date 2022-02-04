@@ -1,5 +1,8 @@
-import InfoCard from '../components/dashboard/InfoCard'
+import { useEffect } from 'react'
+import { useMoralis } from 'react-moralis'
+import { useRouter } from 'next/router'
 
+import InfoCard from '../components/dashboard/InfoCard'
 import VerticalNavbar from '../components/dashboard/VerticalNavbar'
 // SVG's
 import Blogs from '../public/dashboard/blogs.svg'
@@ -43,7 +46,11 @@ const Dashboard = () => {
   const buttons = [
     { title: 'Write Blog', icon: Write, func: null },
     { title: 'Read Blog', icon: ReadBlog, func: null },
-    { title: 'Connect Wallet', icon: Wallet, func: null }
+    {
+      title: 'Connect to Wallet',
+      icon: Wallet,
+      func: null
+    }
   ]
 
   return (
