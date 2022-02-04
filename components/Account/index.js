@@ -23,7 +23,9 @@ function Account({ showIcon = false }) {
           className='inline-flex justify-between items-center w-full'
           onClick={() => setIsAuthModalVisible(true)}
         >
-          <p className={`${showIcon && 'text-2xl font-semibold'} font-nunito`}>Connect to Wallet</p>
+          <p className={`${showIcon && 'text-base lg:text-2xl font-semibold'} font-nunito`}>
+            Connect to Wallet
+          </p>
           {showIcon && <Wallet className='w-12 h-12' />}
         </div>
         <Modal
@@ -45,7 +47,7 @@ function Account({ showIcon = false }) {
         } flex items-center rounded-xl bg-gray-200 cursor-pointer p-2 h-10`}
         onClick={() => setIsModalVisible(true)}
       >
-        <p className={`${showIcon && 'text-2xl'} mr-2 text-green-500`}>
+        <p className={`${showIcon && 'text-base lg:text-2xl'} mr-2 text-green-500`}>
           {getEllipsisTxt(account, 6)}
         </p>
         <Blockie currentWallet scale={showIcon ? 6 : 3} />

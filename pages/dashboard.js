@@ -1,6 +1,4 @@
-import { useEffect } from 'react'
-import { useMoralis } from 'react-moralis'
-import { useRouter } from 'next/router'
+import { useNativeBalance } from 'react-moralis'
 
 import InfoCard from '../components/dashboard/InfoCard'
 import VerticalNavbar from '../components/dashboard/VerticalNavbar'
@@ -16,6 +14,7 @@ import RecentBlogs from '../components/dashboard/RecentBlogs'
 import YourBlogs from '../components/dashboard/YourBlogs'
 
 const Dashboard = () => {
+  const { data: balance } = useNativeBalance()
   const info = [
     {
       name: 'Blogs',
@@ -32,7 +31,7 @@ const Dashboard = () => {
     {
       name: 'Balance',
       icon: <Wallet className='text-[#FF8F6B]' />,
-      value: '1 MATIC',
+      value: balance.formatted,
       bgcolor: 'bg-[#FF8F6B]'
     },
     {
