@@ -17,7 +17,7 @@ const Header = () => {
             Blogs
           </a>
           <a href="#" className="text-base mx-4 font-medium text-gray-900">
-            Contract
+            Contact
           </a>
         </div>
         <div className="mt-3 sm:mt-0 sm:ml-4">
