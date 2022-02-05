@@ -33,6 +33,7 @@ function CreateBlog() {
       const file = new Moralis.File(f.name, f)
       await file.saveIPFS()
       setFileUrl(file.ipfs())
+      console.log(file.ipfs())
     } catch (error) {
       console.log('Image Upload Error', error)
     }
@@ -74,7 +75,9 @@ function CreateBlog() {
         imgURL: fileURL,
         createdAt: new Date()
       }
-      const blog = new Moralis.File('blog.json', { base64: btoa(JSON.stringify(metadata)) })
+      const blog = new Moralis.File('blog.json', {
+        base64: window.btoa(unescape(encodeURIComponent(JSON.stringify(metadata))))
+      })
       await blog.saveIPFS()
       console.log('blog', blog.ipfs())
     } catch (error) {
@@ -98,7 +101,7 @@ function CreateBlog() {
         <div className='my-2 border-2 border-dashed text-center w-fit mx-auto p-5 rounded-lg'>
           <img src='#' id='imagecontainer' className='w-full max-h-32' alt='' />
           <label className='text-xl text-center' htmlFor='image'>
-            {imageFile ? 'Image Added!' : 'Choose an Image'}
+            {fileURL ? 'Uploaded!' : 'Choose an Image'}
           </label>
           <input className='hidden' onChange={onChange} id='image' type='file' />
         </div>
@@ -122,7 +125,9 @@ function CreateBlog() {
           ) : (
             <button
               disabled={value === '' || title === ''}
-              className='mx-auto my-4 w-fit p-4 px-6 rounded-xl border text-white text-xl bg-gradient-to-r from-[#3B82F6] to-[#D946EF]'
+              className={`mx-auto my-4 w-fit p-4 px-6 rounded-xl border text-white text-xl bg-gradient-to-r from-[#3B82F6] to-[#D946EF] ${
+                (value === '' || title === '' || !fileURL) && 'opacity-50 cursor-wait'
+              }`}
               onClick={createData}
             >
               Submit
