@@ -1,12 +1,4 @@
-import Account from '../Account'
-
 const ButtonCard = ({ data }) => {
-  if (data.title === 'Connect to Wallet')
-    return (
-      <div className='col-span-12 md:col-span-4 bg-white px-5 lg:p-10 cursor-pointer drop-shadow-lg flex justify-between items-center rounded-xl'>
-        <Account showIcon={true} />
-      </div>
-    )
   const { icon: Icon, title, func } = data
   return (
     <button

@@ -1,11 +1,15 @@
 import { Fragment } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 
+//Modal for account button
+//open,setOpen - for the state of modal visible/not visible
+//title - Heading of the modal
+//children - component that should be in the body
 const Modal = ({ open, setOpen, title, children }) => {
   return (
     <>
       <Transition.Root show={open} as={Fragment}>
-        <Dialog as='div' className='fixed z-10 inset-0 overflow-y-auto' onClose={setOpen}>
+        <Dialog as='div' className='fixed z-50 inset-0 overflow-y-auto' onClose={setOpen}>
           <div className='flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0'>
             <Transition.Child
               as={Fragment}
@@ -41,7 +45,7 @@ const Modal = ({ open, setOpen, title, children }) => {
                   </div>
                 </div>
                 {children}
-                <div className='mt-5 sm:mt-6'>
+                <div className='mt-3 sm:mt-4'>
                   <button
                     type='button'
                     className='inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:text-sm'

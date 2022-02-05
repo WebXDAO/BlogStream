@@ -3,3 +3,27 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.bottom-card {
+  background: linear-gradient(180deg, #ddd6fe 150%, #a78bfa 500%);
+}
+.bottom-card-button {
+  background: linear-gradient(93.54deg, #af51c5 5.09%, #6e297e 91.93%);
+}
+::-webkit-scrollbar {
+  width: 0.5rem;
+  height: 0.5rem;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(#3b82f6 0%, #d946ef 100%);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(#3b82f6 0%, #d946ef 100%);
+}
