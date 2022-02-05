@@ -1,36 +1,45 @@
+import Link from 'next/link'
+import Logo from '../../public/Logo.svg'
+import Account from '../Account'
+
 const Header = () => {
   return (
-    <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
-      <div className="pb-5 pt-5 mx-8 sm:flex sm:items-center sm:justify-between">
-        <img src="./Logo.svg" alt="Blog Stream" />
-        <div>
-          <a href="#" className="text-base mx-4 font-medium text-gray-900">
+    <div className='md:px-10 md:py-3 sticky top-0 bg-white z-50'>
+      <div className='pb-2 pt-2 mx-4 md:mx-8 flex items-center justify-between'>
+        <Link href={'/'} passHref>
+          <a>
+            <Logo className='cursor-pointer' />
+          </a>
+        </Link>
+        <div className='hidden md:inline-block'>
+          <a href='#' className='text-base md:mx-6 font-medium text-gray-900'>
             Home
           </a>
-          <a href="#" className="text-base mx-4 font-medium text-gray-900">
+          <a href='#' className='text-base md:mx-6 font-medium text-gray-900'>
             About
           </a>
-          <a href="#" className="text-base mx-4 font-medium text-gray-900">
+          <a href='#' className='text-base md:mx-6 font-medium text-gray-900'>
             Docs
           </a>
-          <a href="#" className="text-base mx-4 font-medium text-gray-900">
+          <a href='#' className='text-base md:mx-6 font-medium text-gray-900'>
             Blogs
           </a>
-          <a href="#" className="text-base mx-4 font-medium text-gray-900">
-            Contract
+          <a href='#' className='text-base md:mx-6 font-medium text-gray-900'>
+            Contact
           </a>
         </div>
-        <div className="mt-3 sm:mt-0 sm:ml-4">
-          <button
-            type="button"
-            className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+        <div className='mt-3 sm:mt-0 sm:ml-4'>
+          {/* <button
+            type='button'
+            className=''
           >
             Connect Wallet
-          </button>
+          </button> */}
+          <Account connectStyles='inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500' />
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

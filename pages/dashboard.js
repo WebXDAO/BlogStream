@@ -1,5 +1,6 @@
-import InfoCard from '../components/dashboard/InfoCard'
+import { useMoralis, useNativeBalance } from 'react-moralis'
 
+import InfoCard from '../components/dashboard/InfoCard'
 import VerticalNavbar from '../components/dashboard/VerticalNavbar'
 // SVG's
 import Blogs from '../public/dashboard/blogs.svg'
@@ -11,8 +12,23 @@ import ReadBlog from '../public/dashboard/read.svg'
 import ButtonCard from '../components/dashboard/ButtonCard'
 import RecentBlogs from '../components/dashboard/RecentBlogs'
 import YourBlogs from '../components/dashboard/YourBlogs'
+import Account from '../components/Account'
+import { useEffect } from 'react'
+import { useRouter } from 'next/router'
 
 const Dashboard = () => {
+  const { data: balance } = useNativeBalance()
+  const router = useRouter()
+
+  //check if already account is present or not else redirect
+  const { isWeb3Enabled, enableWeb3, isAuthenticated, isWeb3EnableLoading, user } = useMoralis()
+
+  useEffect(() => {
+    const connectorId = window.localStorage.getItem('connectorId')
+    if (isAuthenticated && !isWeb3Enabled && !isWeb3EnableLoading)
+      enableWeb3({ provider: connectorId })
+  }, [isAuthenticated, isWeb3Enabled])
+
   const info = [
     {
       name: 'Blogs',
@@ -29,7 +45,7 @@ const Dashboard = () => {
     {
       name: 'Balance',
       icon: <Wallet className='text-[#FF8F6B]' />,
-      value: '1 MATIC',
+      value: balance.formatted,
       bgcolor: 'bg-[#FF8F6B]'
     },
     {
@@ -42,11 +58,17 @@ const Dashboard = () => {
   // TODO:Add functions to each button here
   const buttons = [
     { title: 'Write Blog', icon: Write, func: null },
-    { title: 'Read Blog', icon: ReadBlog, func: null },
-    { title: 'Connect Wallet', icon: Wallet, func: null }
+    { title: 'Read Blog', icon: ReadBlog, func: null }
   ]
 
-  return (
+  return !isAuthenticated ? (
+    <div className='h-screen flex bg-gray-300'>
+      <Account
+        className='m-auto w-1/4 bg-blue-600 text-white p-4 rounded-xl border'
+        showIcon={true}
+      />
+    </div>
+  ) : (
     <div className='bg-[#FAFAFB] grid grid-cols-12 md:p-2 h-screen'>
       <div className='col-span-1'>
         <VerticalNavbar />
@@ -64,6 +86,9 @@ const Dashboard = () => {
           {buttons.map((data, index) => (
             <ButtonCard key={data.title + index} data={data} />
           ))}
+          <div className='col-span-12 md:col-span-4 bg-white px-5 lg:p-10 cursor-pointer drop-shadow-lg flex justify-between items-center rounded-xl'>
+            <Account showIcon={true} />
+          </div>
         </div>
         <div className='mt-6 grid grid-cols-12 gap-4'>
           <RecentBlogs />
