@@ -1,8 +1,10 @@
+import Logo from "../../public/Logo.svg";
+
 const Header = () => {
   return (
     <div>
       <div className="pb-2 pt-2 mx-8 sm:flex sm:items-center sm:justify-between">
-        <img src="./Logo.svg" alt="Blog Stream" />
+        <Logo />
         <div>
           <a href="#" className="text-base mx-6 font-medium text-gray-900">
             Home
