@@ -1,4 +1,5 @@
-module.exports = {
+const removeImports = require('next-remove-imports')()
+module.exports = removeImports({
   reactStrictMode: true,
   webpack(config) {
     config.module.rules.push({
@@ -9,4 +10,4 @@ module.exports = {
 
     return config
   }
-}
+})
