@@ -6,6 +6,7 @@ import Wallet from '../../public/dashboard/wallet.svg'
 import Bell from '../../public/dashboard/bell.svg'
 import Setting from '../../public/dashboard/setting.svg'
 import Menu from '../../public/dashboard/menu.svg'
+import Account from '../Account'
 
 const icons = [
   { name: 'menu', icon: Menu, link: '/dashboard' },
@@ -32,9 +33,7 @@ const VerticalNavbar = () => {
         ))}
       </div>
       <div className='flex flex-col items-center gap-2'>
-        {/* TODO: replace with image */}
-        <div className='w-8 h-8 bg-slate-500 rounded-lg'></div>
-        <Logout className='text-gray-400' />
+        <Account className={'flex-col-reverse'} addressHide={true} connectStyles={'hidden'} />
       </div>
     </div>
   )
