@@ -4,6 +4,12 @@
 @tailwind components;
 @tailwind utilities;
 
+.bottom-card {
+  background: linear-gradient(180deg, #ddd6fe 150%, #a78bfa 500%);
+}
+.bottom-card-button {
+  background: linear-gradient(93.54deg, #af51c5 5.09%, #6e297e 91.93%);
+}
 ::-webkit-scrollbar {
   width: 0.5rem;
   height: 0.5rem;

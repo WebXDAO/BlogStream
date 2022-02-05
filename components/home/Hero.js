@@ -35,7 +35,7 @@ const Hero = () => {
         </div>
       </div>
       <div className='absolute top-20 right-1/3 w-40 h-40 -z-10 bg-[#DE2BAE] rounded-full filter blur-3xl' />
-      <div className='absolute bg-[#1D4ED8] w-56 h-56 top-1/2 -left-10 -z-10 rounded-full filter blur-3xl' />
+      <div className='invisible md:visible  absolute bg-[#1D4ED8] w-56 h-56 top-1/2 -left-10 -z-10 rounded-full filter blur-3xl' />
       <div className='absolute bg-[#2563EB] w-80 h-80 top-1/2 -right-20 -z-10 rounded-full filter blur-3xl' />
     </div>
   )
