@@ -7,6 +7,11 @@ import Layout from '../components/global/Layout'
 import Moralis from 'moralis'
 import { useMoralis } from 'react-moralis'
 import Account from '../components/Account'
+import Web3 from 'web3';
+var Contract = require('web3-eth-contract');
+import {BlogABI as abi} from '../ABI/Blog'
+const blogStreamContract = "0x6293DC62FBda245d33EA22944b9968911657373b";
+
 
 // const client = ipfsHttpClient('https://ipfs.infura.io:5001/api/v0')
 const MDEditor = dynamic(() => import('@uiw/react-md-editor'), { ssr: false })
@@ -17,6 +22,8 @@ function CreateBlog() {
   const [title, setTitle] = useState('')
   const [imageFile, setImageFile] = useState(null)
   const [fileURL, setFileUrl] = useState(null)
+  const [uri, setUri] = useState(null)
+
 
   const { isWeb3Enabled, enableWeb3, isAuthenticated, isWeb3EnableLoading, account } = useMoralis()
 
@@ -25,6 +32,15 @@ function CreateBlog() {
     if (isAuthenticated && !isWeb3Enabled && !isWeb3EnableLoading)
       enableWeb3({ provider: connectorId })
   }, [isAuthenticated, isWeb3Enabled])
+
+
+  async function uploadToChain(blogUri, flowrate){
+    await Moralis.enableWeb3();
+const web3 = new Web3(window.ethereum)
+var instance = new web3.eth.Contract(abi, blogStreamContract);
+    const reciept = await instance.methods.postBlog(blogUri, flowrate).send({from});
+    return reciept
+  }
 
   async function onChange(e) {
     try {
@@ -77,6 +93,7 @@ function CreateBlog() {
       const blog = new Moralis.File('blog.json', { base64: btoa(JSON.stringify(metadata)) })
       await blog.saveIPFS()
       console.log('blog', blog.ipfs())
+      setUri(blog.ipfs())
     } catch (error) {
       console.log('Blog Error', error)
     }
@@ -84,6 +101,7 @@ function CreateBlog() {
     setFileUrl(null)
     setTitle('')
     setValue('')
+    uploadToChain(uri, 10000)
   }
   return !isAuthenticated ? (
     <div className='h-screen flex bg-gray-300'>
