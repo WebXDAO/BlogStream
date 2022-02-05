@@ -10,17 +10,23 @@ import { getEllipsisTxt } from '../../helpers/formatters'
 import Modal from './Modal'
 import Wallet from '../../public/dashboard/wallet.svg'
 
-function Account({ showIcon = false }) {
+//To show the account data
+//classname can be used to give global styles to both the components
+//showIcon = if true then icon is displayed in a large size
+//connect_styles = it is used to style the connect to wallet button
+//addressHide = to hide the address near the icon
+function Account({ showIcon = false, connectStyles = null, className, addressHide = false }) {
   const { authenticate, isAuthenticated, account, chainId, logout } = useMoralis()
   const [isModalVisible, setIsModalVisible] = useState(false)
   const [isAuthModalVisible, setIsAuthModalVisible] = useState(false)
-
   //When no wallet is connected show modal with wallets to select
   if (!isAuthenticated || !account) {
     return (
       <>
         <div
-          className='inline-flex justify-between items-center w-full'
+          className={`${className} inline-flex justify-between items-center w-full + ${
+            connectStyles && connectStyles
+          }`}
           onClick={() => setIsAuthModalVisible(true)}
         >
           <p className={`${showIcon && 'text-base lg:text-2xl font-semibold'} font-nunito`}>
@@ -44,13 +50,17 @@ function Account({ showIcon = false }) {
       <div
         className={`${
           showIcon ? 'bg-transparent justify-between w-full' : 'w-fit justify-center'
-        } flex items-center rounded-xl bg-gray-200 cursor-pointer p-2 h-10`}
+        } flex items-center rounded-xl cursor-pointer p-2 h-10 ${className}`}
         onClick={() => setIsModalVisible(true)}
       >
-        <p className={`${showIcon && 'text-base lg:text-2xl'} mr-2 text-green-500`}>
+        <p
+          className={`${addressHide && 'hidden'} ${
+            showIcon && 'text-base lg:text-2xl'
+          } mr-2 text-green-500`}
+        >
           {getEllipsisTxt(account, 6)}
         </p>
-        <Blockie currentWallet scale={showIcon ? 6 : 3} />
+        <Blockie currentWallet scale={showIcon ? 6 : 4} />
       </div>
       <Modal
         open={isModalVisible}
@@ -111,7 +121,7 @@ const AccountData = ({ setOpen, logout, chainId, account }) => {
           View in Explorer
         </a>
       </div>
-      <div className='mt-5 sm:mt-6'>
+      <div className='mt-3 sm:mt-4'>
         <button
           type='button'
           className='inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:text-sm'
