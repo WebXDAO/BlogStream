@@ -1,5 +1,6 @@
-import InfoCard from '../components/dashboard/InfoCard'
+import { useNativeBalance } from 'react-moralis'
 
+import InfoCard from '../components/dashboard/InfoCard'
 import VerticalNavbar from '../components/dashboard/VerticalNavbar'
 // SVG's
 import Blogs from '../public/dashboard/blogs.svg'
@@ -13,6 +14,7 @@ import RecentBlogs from '../components/dashboard/RecentBlogs'
 import YourBlogs from '../components/dashboard/YourBlogs'
 
 const Dashboard = () => {
+  const { data: balance } = useNativeBalance()
   const info = [
     {
       name: 'Blogs',
@@ -29,7 +31,7 @@ const Dashboard = () => {
     {
       name: 'Balance',
       icon: <Wallet className='text-[#FF8F6B]' />,
-      value: '1 MATIC',
+      value: balance.formatted,
       bgcolor: 'bg-[#FF8F6B]'
     },
     {
@@ -43,7 +45,11 @@ const Dashboard = () => {
   const buttons = [
     { title: 'Write Blog', icon: Write, func: null },
     { title: 'Read Blog', icon: ReadBlog, func: null },
-    { title: 'Connect Wallet', icon: Wallet, func: null }
+    {
+      title: 'Connect to Wallet',
+      icon: Wallet,
+      func: null
+    }
   ]
 
   return (
