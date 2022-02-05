@@ -1,6 +1,6 @@
-import Layout from "../components/global/Layout";
+import Layout from '../components/global/Layout'
 
-import Hero from "./Hero";
+import Hero from '../components/home/Hero'
 
 export default function Home() {
   return (
@@ -8,5 +8,5 @@ export default function Home() {
     <Layout>
       <Hero />
     </Layout>
-  );
+  )
 }
