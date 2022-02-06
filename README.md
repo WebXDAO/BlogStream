@@ -4,7 +4,7 @@
 
 <!-- 🚀DEMO: 'Link goes here' -->
 
-This a project created for Road to Web3 hackathon by WebXDAO (Team1) - Sreekar Sarvepalli, David Kim, Abhinav MV
+This is a project created for Road to Web3 hackathon by WebXDAO (Team1) - Sreekar Sarvepalli, David Kim, Abhinav MV
 
 <!-- Image of our hompage goes here  -->
 

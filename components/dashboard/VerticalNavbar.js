@@ -21,7 +21,7 @@ const VerticalNavbar = () => {
   return (
     <div className='bg-white flex flex-col justify-between items-center p-2 md:m-5 min-w-fit rounded-md h-[95%]'>
       <Link href='/'>
-        <img src='./dashboard/logo.svg' alt='BlogStream' className='w-8 h-8' />
+        <img src='./dashboard/logo.svg' alt='BlogStream' className='w-8 h-8 cursor-pointer' />
       </Link>
       <div className='flex flex-col items-center gap-4'>
         {icons.map(({ name, icon: Icon, link }, index) => (

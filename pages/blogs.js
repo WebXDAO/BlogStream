@@ -1,9 +1,9 @@
+import { useEffect } from 'react'
+import { useMoralis } from 'react-moralis'
 import BlogCard from '../components/global/BlogCard'
 import Layout from '../components/global/Layout'
-import {BlogABI as abi} from '../ABI/Blog'
+import { BlogABI as abi } from '../ABI/Blog'
 import Moralis from 'moralis'
-import { useMoralis } from 'react-moralis'
-import { useEffect, useState } from 'react'
 
 const blogStreamContract = "0xd8f853912c0903cd8890ab8795210f462321f68f";
 
@@ -14,7 +14,7 @@ function Blogs(){
   // const [connector, setConnector] = useState([])
   useEffect(() => {
     const connectorId = window.localStorage.getItem('connectorId')
-    if (isAuthenticated && !isWeb3Enabled && !isWeb3EnableLoading)
+    if (isAuthenticated && !isWeb3Enabled && !isWeb3EnableLoading) 
       enableWeb3({ provider: connectorId })
       if(isWeb3Enabled){
         storeUri()
@@ -27,11 +27,11 @@ function Blogs(){
   async function getUri(blogId){
     const readOptions = {
       contractAddress: blogStreamContract,
-      functionName: "getBlogUri",
+      functionName: 'getBlogUri',
       abi: abi,
       params: {
-        _blogId: blogId,
-      },
+        _blogId: blogId
+      }
     }
     const message = await Moralis.executeFunction(readOptions);
     return message
