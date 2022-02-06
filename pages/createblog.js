@@ -22,7 +22,6 @@ function CreateBlog() {
   const [title, setTitle] = useState('')
   const [flowRate, setFlowRate] = useState(0)
   const [fileURL, setFileUrl] = useState(null)
-  const [uri, setUri] = useState(null)
 
 
   const { isWeb3Enabled, enableWeb3, isAuthenticated, isWeb3EnableLoading, account } = useMoralis()
@@ -127,7 +126,7 @@ await transaction.wait();
       })
       await blog.saveIPFS()
       console.log('blog', blog.ipfs())
-    uploadToChain(blog.ipfs(), 10000)
+    uploadToChain(blog.ipfs(), flowRate)
 
     } catch (error) {
       console.log('Blog Error', error)
