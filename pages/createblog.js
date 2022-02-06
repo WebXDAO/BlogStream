@@ -15,7 +15,7 @@ function CreateBlog() {
   const [isLoading, setIsLoading] = useState(null)
   const [value, setValue] = useState('')
   const [title, setTitle] = useState('')
-  const [imageFile, setImageFile] = useState(null)
+  const [flowRate, setFlowRate] = useState(0)
   const [fileURL, setFileUrl] = useState(null)
 
   const { isWeb3Enabled, enableWeb3, isAuthenticated, isWeb3EnableLoading, account } = useMoralis()
@@ -105,17 +105,32 @@ function CreateBlog() {
           </label>
           <input className='hidden' onChange={onChange} id='image' type='file' />
         </div>
-        <div className='mb-4 flex justify-center items-center space-x-4 mx-8'>
+        <div className='mb-4 flex w-full justify-center items-center space-x-2'>
           <label className='block text-gray-700 text-2xl font-bold mb-2' htmlFor='title'>
             Title
           </label>
           <input
-            className='shadow appearance-none border rounded w-full py-4 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
+            className='shadow appearance-none border rounded w-2/3 py-4 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
             id='title'
             type='text'
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             placeholder='Title'
+          />
+
+          <label
+            className='block text-gray-700 text-2xl whitespace-nowrap font-bold mb-2'
+            htmlFor='flowrate'
+          >
+            Flow Rate
+          </label>
+          <input
+            className='shadow appearance-none border rounded w-1/3 py-4 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
+            id='title'
+            type='number'
+            value={flowRate}
+            onChange={(e) => setFlowRate(e.target.value)}
+            placeholder='Flow Rate'
           />
         </div>
         <MDEditor height={500} value={value} onChange={setValue} />
