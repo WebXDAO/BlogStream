@@ -1,8 +1,75 @@
-// import SupportWithCrypto from "../public/landingpage/supportwithcrypto.svg";
+import TestimonialCarousel from "../global/TestimonialCarousel";
+
+const testimonialData = [
+  {
+    id: 1,
+    subject:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+    author: "Sreekar Sarvepalli",
+    pfpSrc: "/landingpage/hottestguy.png",
+    position: "Blockchain Specialist",
+  },
+  {
+    id: 2,
+    subject:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+    author: "Sreekar Sarvepalli",
+    pfpSrc: "/landingpage/hottestguy.png",
+    position: "Blockchain Specialist",
+  },
+  {
+    id: 3,
+    subject:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+    author: "Sreekar Sarvepalli",
+    pfpSrc: "/landingpage/hottestguy.png",
+    position: "Blockchain Specialist",
+  },
+  {
+    id: 4,
+    subject:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+    author: "Sreekar Sarvepalli",
+    pfpSrc: "/landingpage/hottestguy.png",
+    position: "Blockchain Specialist",
+  },
+  {
+    id: 5,
+    subject:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+    author: "Sreekar Sarvepalli",
+    pfpSrc: "/landingpage/hottestguy.png",
+    position: "Blockchain Specialist",
+  },
+  {
+    id: 6,
+    subject:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+    author: "Sreekar Sarvepalli",
+    pfpSrc: "/landingpage/hottestguy.png",
+    position: "Blockchain Specialist",
+  },
+  {
+    id: 7,
+    subject:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+    author: "Sreekar Sarvepalli",
+    pfpSrc: "/landingpage/hottestguy.png",
+    position: "Blockchain Specialist",
+  },
+  {
+    id: 8,
+    subject:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+    author: "Sreekar Sarvepalli",
+    pfpSrc: "/landingpage/hottestguy.png",
+    position: "Blockchain Specialist",
+  },
+];
 
 const Testimonials = () => {
   return (
-    <div className="px-20">
+    <div className="px-[5vw] h-[100vh] mb-32">
       <svg
         width="170"
         height="160"
@@ -16,8 +83,9 @@ const Testimonials = () => {
         />
       </svg>
       <div className="flex flex-col justify-center items-center">
-        <h1 className="text-pink-400 font-bold text-lg">TESTIMONIALS</h1>
+        <h1 className="text-pink-400 font-bold text-lg mb-20">TESTIMONIALS</h1>
       </div>
+      <TestimonialCarousel data={testimonialData} />
     </div>
   );
 };
