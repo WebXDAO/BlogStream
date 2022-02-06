@@ -8,7 +8,7 @@ import WalletSection from "../components/home/WalletSection";
 import Hero from "../components/home/Hero";
 import LatestArticles from "../components/home/LatestArticles";
 import FAQ from "../components/home/FAQ";
-import Testimonials from "../components/home/testimonials";
+import Testimonials from "../components/home/Testimonials";
 
 export default function Home() {
   const { isWeb3Enabled, enableWeb3, isAuthenticated, isWeb3EnableLoading } =
