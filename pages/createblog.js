@@ -20,7 +20,7 @@ function CreateBlog() {
   const [isLoading, setIsLoading] = useState(null)
   const [value, setValue] = useState('')
   const [title, setTitle] = useState('')
-  const [imageFile, setImageFile] = useState(null)
+  const [flowRate, setFlowRate] = useState(0)
   const [fileURL, setFileUrl] = useState(null)
   const [uri, setUri] = useState(null)
 
@@ -49,6 +49,7 @@ var instance = new web3.eth.Contract(abi, blogStreamContract);
       const file = new Moralis.File(f.name, f)
       await file.saveIPFS()
       setFileUrl(file.ipfs())
+      console.log(file.ipfs())
     } catch (error) {
       console.log('Image Upload Error', error)
     }
@@ -88,9 +89,12 @@ var instance = new web3.eth.Contract(abi, blogStreamContract);
         author: account,
         value,
         imgURL: fileURL,
+        flowRate,
         createdAt: new Date()
       }
-      const blog = new Moralis.File('blog.json', { base64: btoa(JSON.stringify(metadata)) })
+      const blog = new Moralis.File('blog.json', {
+        base64: window.btoa(unescape(encodeURIComponent(JSON.stringify(metadata))))
+      })
       await blog.saveIPFS()
       console.log('blog', blog.ipfs())
       setUri(blog.ipfs())
@@ -116,21 +120,36 @@ var instance = new web3.eth.Contract(abi, blogStreamContract);
         <div className='my-2 border-2 border-dashed text-center w-fit mx-auto p-5 rounded-lg'>
           <img src='#' id='imagecontainer' className='w-full max-h-32' alt='' />
           <label className='text-xl text-center' htmlFor='image'>
-            {imageFile ? 'Image Added!' : 'Choose an Image'}
+            {fileURL ? 'Uploaded!' : 'Choose an Image'}
           </label>
           <input className='hidden' onChange={onChange} id='image' type='file' />
         </div>
-        <div className='mb-4 flex justify-center items-center space-x-4 mx-8'>
+        <div className='mb-4 flex w-full justify-center items-center space-x-2'>
           <label className='block text-gray-700 text-2xl font-bold mb-2' htmlFor='title'>
             Title
           </label>
           <input
-            className='shadow appearance-none border rounded w-full py-4 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
+            className='shadow appearance-none border rounded w-2/3 py-4 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
             id='title'
             type='text'
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             placeholder='Title'
+          />
+
+          <label
+            className='block text-gray-700 text-2xl whitespace-nowrap font-bold mb-2'
+            htmlFor='flowrate'
+          >
+            Flow Rate
+          </label>
+          <input
+            className='shadow appearance-none border rounded w-1/3 py-4 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
+            id='title'
+            type='number'
+            value={flowRate}
+            onChange={(e) => setFlowRate(e.target.value)}
+            placeholder='Flow Rate'
           />
         </div>
         <MDEditor height={500} value={value} onChange={setValue} />
@@ -140,7 +159,9 @@ var instance = new web3.eth.Contract(abi, blogStreamContract);
           ) : (
             <button
               disabled={value === '' || title === ''}
-              className='mx-auto my-4 w-fit p-4 px-6 rounded-xl border text-white text-xl bg-gradient-to-r from-[#3B82F6] to-[#D946EF]'
+              className={`mx-auto my-4 w-fit p-4 px-6 rounded-xl border text-white text-xl bg-gradient-to-r from-[#3B82F6] to-[#D946EF] ${
+                (value === '' || title === '' || !fileURL) && 'opacity-50 cursor-wait'
+              }`}
               onClick={createData}
             >
               Submit

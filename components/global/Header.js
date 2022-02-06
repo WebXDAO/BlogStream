@@ -12,23 +12,23 @@ const Header = () => {
           </a>
         </Link>
         <div className='hidden md:inline-block'>
-          <a href='#' className='text-base md:mx-6 font-medium text-gray-900'>
+          <a href='#' className='text-base md:mx-5 font-medium text-gray-900'>
             Home
           </a>
-          <a href='#' className='text-base md:mx-6 font-medium text-gray-900'>
+          <a href='#' className='text-base md:mx-5 font-medium text-gray-900'>
             About
           </a>
-          <a href='#' className='text-base md:mx-6 font-medium text-gray-900'>
+          <a href='#' className='text-base md:mx-5 font-medium text-gray-900'>
             Docs
           </a>
-          <a href='#' className='text-base md:mx-6 font-medium text-gray-900'>
+          <a href='#' className='text-base md:mx-5 font-medium text-gray-900'>
             Blogs
           </a>
-          <a href='#' className='text-base md:mx-6 font-medium text-gray-900'>
+          <a href='#' className='text-base md:mx-5 font-medium text-gray-900'>
             Contact
           </a>
         </div>
-        <div className='mt-3 sm:mt-0 sm:ml-4'>
+        <div className='mt-3 sm:mt-0 '>
           {/* <button
             type='button'
             className=''
