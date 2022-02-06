@@ -69,7 +69,7 @@ const articleData = [
 
 const LatestArticles = () => {
   return (
-    <div className="h-[65vh]">
+    <div className="h-[65vh] my-20">
       <h1 className="text-3xl px-40 pb-20 font-bold">Latest Articles</h1>
       <Carousel data={articleData} />
     </div>
