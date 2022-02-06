@@ -1,14 +1,14 @@
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
-import ReactMarkdown from 'react-markdown'
-import remarkGfm from 'remark-gfm'
 
 const BlogCard = ({ link }) => {
   const [linkData, setLinkData] = useState(null)
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch(link)
+        const res = await fetch(
+          'https://ipfs.moralis.io:2053/ipfs/QmdGXworVtwRC4qwKVHammFePmimvkAYYUuRrSS5yAF4wL'
+        )
         const data = await res.json()
         setLinkData(data)
         console.log(data)
