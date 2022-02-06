@@ -20,30 +20,29 @@ const Header = () => {
           >
             {isAuthenticated ? 'Dashboard' : 'Home'}
           </a>
-          <a href='#' className='text-base md:mx-5 font-medium text-gray-900'>
+          <a
+            href='https://github.com/WebXDAO/BlogStream'
+            className='text-base md:mx-5 font-medium text-gray-900'
+          >
             About
           </a>
-          <a href='#' className='text-base md:mx-5 font-medium text-gray-900'>
+          <a
+            href='https://blogstream-docs.netlify.app/'
+            className='text-base md:mx-5 font-medium text-gray-900'
+          >
             Docs
           </a>
-          <a href='#' className='text-base md:mx-5 font-medium text-gray-900'>
+          <a href='/blogs' className='text-base md:mx-5 font-medium text-gray-900'>
             Blogs
           </a>
-          <a href='#' className='text-base md:mx-5 font-medium text-gray-900'>
+          <a
+            href='https://bio.link/webxdao'
+            className='text-base md:mx-5 font-medium text-gray-900'
+          >
             Contact
           </a>
         </div>
-<<<<<<< HEAD
-        <div className='mt-3 sm:mt-0 '>
-          {/* <button
-            type='button'
-            className=''
-          >
-            Connect Wallet
-          </button> */}
-=======
         <div className='mt-3 sm:mt-0 sm:ml-4'>
->>>>>>> 1fb3dd5e54448d8bef1a8dd01dd1b7f30e5bbcea
           <Account connectStyles='inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500' />
         </div>
       </div>
