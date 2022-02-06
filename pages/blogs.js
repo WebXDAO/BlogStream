@@ -1,12 +1,59 @@
 import BlogCard from '../components/global/BlogCard'
 import Layout from '../components/global/Layout'
+import {BlogABI as abi} from '../ABI/Blog'
+import Moralis from 'moralis'
+import { useMoralis } from 'react-moralis'
+import { useEffect, useState } from 'react'
 
-const Blogs = () => {
-  const lnks = [
-    'https://ipfs.moralis.io:2053/ipfs/QmbzzckrEpqMUxkWsG9Tm5SYWEyTtqdhMnLGWaR73hW8g6',
-    'https://ipfs.moralis.io:2053/ipfs/QmdGXworVtwRC4qwKVHammFePmimvkAYYUuRrSS5yAF4wL',
-    'https://ipfs.moralis.io:2053/ipfs/QmciG4YNhgFHQkZZ11N8W4v84QUkLewzepTP2CSyeCann6'
-  ]
+const blogStreamContract = "0x6293DC62FBda245d33EA22944b9968911657373b";
+
+function Blogs(){
+  const { isWeb3Enabled, enableWeb3, isAuthenticated, isWeb3EnableLoading, account } = useMoralis()
+  const lnks = []
+  useEffect(() => {
+    const connectorId = window.localStorage.getItem('connectorId')
+    if (isAuthenticated && !isWeb3Enabled && !isWeb3EnableLoading)
+      enableWeb3({ provider: connectorId })
+  }, [isAuthenticated, isWeb3Enabled])
+
+  async function getUri(blogId){
+    const readOptions = {
+      contractAddress: blogStreamContract,
+      functionName: "getBlogUri",
+      abi: abi,
+      params: {
+        _blogId: blogId,
+      },
+    }
+    const message = await Moralis.executeFunction(readOptions);
+    console.log("test Blog",message)
+    return message
+  }
+async function storeUri(){
+  const readOptions = {
+    contractAddress: blogStreamContract,
+    functionName: "getBlogCounter",
+    abi: abi,
+}
+const blogCount = await Moralis.executeFunction(readOptions);
+console.log("test123",blogCount)
+
+// try{
+//   for(let i=0;i<blogCount;i++){
+//    const res = fetch(getUri(i))
+//    const data = await res.json()
+//    console.log("image link",data.imgUrl)
+//    lnks.push(data.imgUrl)
+//   }
+// } catch(error){
+//   console.log(error)
+// }
+
+}
+storeUri()
+ 
+
+  
   return (
     <Layout>
       <div className='py-6 grid grid-cols-2 w-full px-10 md:px-32 lg:px-52 bg-[#FAFAFB] gap-4'>
@@ -18,4 +65,10 @@ const Blogs = () => {
   )
 }
 
+
+
 export default Blogs
+
+
+
+
