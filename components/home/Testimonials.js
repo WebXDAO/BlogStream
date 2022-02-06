@@ -5,24 +5,24 @@ const testimonialData = [
     id: 1,
     subject:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
-    author: "Sreekar Sarvepalli",
-    pfpSrc: "/landingpage/hottestguy.png",
+    author: "Vincent Villafuerte",
+    pfpSrc: "/landingpage/vincent villafuerte.png",
     position: "Blockchain Specialist",
   },
   {
     id: 2,
     subject:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
-    author: "Sreekar Sarvepalli",
+    author: "Ritvik Shukla",
     pfpSrc: "/landingpage/hottestguy.png",
-    position: "Blockchain Specialist",
+    position: "Student | Poet | Writer | Singer",
   },
   {
     id: 3,
     subject:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
-    author: "Sreekar Sarvepalli",
-    pfpSrc: "/landingpage/hottestguy.png",
+    author: "Krish Gupta",
+    pfpSrc: "/landingpage/krish gupta.png",
     position: "Blockchain Specialist",
   },
   {
@@ -35,30 +35,6 @@ const testimonialData = [
   },
   {
     id: 5,
-    subject:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
-    author: "Sreekar Sarvepalli",
-    pfpSrc: "/landingpage/hottestguy.png",
-    position: "Blockchain Specialist",
-  },
-  {
-    id: 6,
-    subject:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
-    author: "Sreekar Sarvepalli",
-    pfpSrc: "/landingpage/hottestguy.png",
-    position: "Blockchain Specialist",
-  },
-  {
-    id: 7,
-    subject:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
-    author: "Sreekar Sarvepalli",
-    pfpSrc: "/landingpage/hottestguy.png",
-    position: "Blockchain Specialist",
-  },
-  {
-    id: 8,
     subject:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
     author: "Sreekar Sarvepalli",
