@@ -73,6 +73,7 @@ function CreateBlog() {
         author: account,
         value,
         imgURL: fileURL,
+        flowRate,
         createdAt: new Date()
       }
       const blog = new Moralis.File('blog.json', {
