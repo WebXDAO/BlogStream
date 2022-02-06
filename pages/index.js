@@ -2,8 +2,8 @@ import { useEffect } from 'react'
 import { useMoralis } from 'react-moralis'
 import Layout from '../components/global/Layout'
 import BottomCard from '../components/home/BottomCard'
-import HowItWork from '../components/home/howitwork'
-import WalletSection from '../components/home/walletsection'
+import HowItWork from '../components/home/HowItWork'
+import WalletSection from '../components/home/WalletSection'
 
 import Hero from '../components/home/Hero'
 
@@ -20,8 +20,8 @@ export default function Home() {
     // inside of layout
     <Layout>
       <Hero />
-      <HowItWork />
       <WalletSection />
+      <HowItWork />
       <BottomCard />
     </Layout>
   )
