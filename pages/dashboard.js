@@ -21,7 +21,7 @@ const Dashboard = () => {
   const router = useRouter()
 
   //check if already account is present or not else redirect
-  const { isWeb3Enabled, enableWeb3, isAuthenticated, isWeb3EnableLoading, user } = useMoralis()
+  const { isWeb3Enabled, enableWeb3, isAuthenticated, isWeb3EnableLoading } = useMoralis()
 
   useEffect(() => {
     const connectorId = window.localStorage.getItem('connectorId')
@@ -55,10 +55,22 @@ const Dashboard = () => {
       bgcolor: 'bg-[#605BFF]'
     }
   ]
-  // TODO:Add functions to each button here
+
   const buttons = [
-    { title: 'Write Blog', icon: Write, func: null },
-    { title: 'Read Blog', icon: ReadBlog, func: null }
+    {
+      title: 'Write Blog',
+      icon: Write,
+      func: () => {
+        router.push('/createblog')
+      }
+    },
+    {
+      title: 'Read Blog',
+      icon: ReadBlog,
+      func: () => {
+        router.push('/blogs')
+      }
+    }
   ]
 
   return !isAuthenticated ? (
@@ -80,7 +92,6 @@ const Dashboard = () => {
             <InfoCard data={data} key={index} />
           ))}
         </div>
-        {/* TODO:Add account or profile name here */}
         <h2 className='my-6 text-2xl font-nunito font-extrabold text-[#787878]'>Hi Sreekar!</h2>
         <div className='grid grid-cols-12 gap-4'>
           {buttons.map((data, index) => (

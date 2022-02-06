@@ -4,8 +4,6 @@ import BlogCard from '../components/global/BlogCard'
 import Layout from '../components/global/Layout'
 import { BlogABI as abi } from '../ABI/Blog'
 import Moralis from 'moralis'
-import { useMoralis } from 'react-moralis'
-import { useEffect, useState } from 'react'
 
 const blogStreamContract = '0x6293DC62FBda245d33EA22944b9968911657373b'
 
@@ -14,8 +12,9 @@ function Blogs() {
   const lnks = []
   useEffect(() => {
     const connectorId = window.localStorage.getItem('connectorId')
-    if (isAuthenticated && !isWeb3Enabled && !isWeb3EnableLoading)
+    if (isAuthenticated && !isWeb3Enabled && !isWeb3EnableLoading) {
       enableWeb3({ provider: connectorId })
+    }
   }, [isAuthenticated, isWeb3Enabled])
 
   async function getUri(blogId) {
@@ -51,7 +50,7 @@ function Blogs() {
     //   console.log(error)
     // }
   }
-  storeUri()
+  // if (isWeb3Enabled) storeUri()
 
   return (
     <Layout>

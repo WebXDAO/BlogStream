@@ -4,7 +4,7 @@ const Hero = () => {
     <div className='w-full h-[95vh] relative overflow-hidden'>
       <div className='absolute top-0 left-0 w-full h-full z-10'>
         <div className='flex w-full h-full justify-center'>
-          <div className='w-fit p-2 lg:w-1/2 lg:ml-44 lg:py-32 z-10 mx-auto my-auto lg:my-0'>
+          <div className='w-fit p-2 px-24 lg:w-1/2 lg:ml-44 lg:py-32 z-10 mx-auto py-52 md:my-32 lg:my-0'>
             <h1 className='py-4 text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#3B82F6] to-[#D946EF] mb-4'>
               BlogStream
             </h1>
