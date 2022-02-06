@@ -73,5 +73,40 @@ export const BlogABI = [
 		],
 		"stateMutability": "view",
 		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "totalCreated",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "address",
+						"name": "author",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "blogUri",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "flowRate",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "blogTokenId",
+						"type": "uint256"
+					}
+				],
+				"internalType": "struct Blog.blogPost[]",
+				"name": "",
+				"type": "tuple[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
 	}
 ]

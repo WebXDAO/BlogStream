@@ -5,17 +5,25 @@ import Moralis from 'moralis'
 import { useMoralis } from 'react-moralis'
 import { useEffect, useState } from 'react'
 
-const blogStreamContract = "0x6293DC62FBda245d33EA22944b9968911657373b";
+const blogStreamContract = "0xd8f853912c0903cd8890ab8795210f462321f68f";
 
 function Blogs(){
-  const { isWeb3Enabled, enableWeb3, isAuthenticated, isWeb3EnableLoading, account } = useMoralis()
+  const { isWeb3Enabled, enableWeb3, isAuthenticated, isWeb3EnableLoading, account, isInitialized } = useMoralis()
   const lnks = []
+  const[stateUrl, setStateUrl] = useState([])
+  // const [connector, setConnector] = useState([])
   useEffect(() => {
     const connectorId = window.localStorage.getItem('connectorId')
     if (isAuthenticated && !isWeb3Enabled && !isWeb3EnableLoading)
       enableWeb3({ provider: connectorId })
+      if(isWeb3Enabled){
+        storeUri()
+        }
   }, [isAuthenticated, isWeb3Enabled])
-
+ 
+  // if (isInitialized && isAuthenticated && !isWeb3Enabled) {
+  //   enableWeb3();
+  // }
   async function getUri(blogId){
     const readOptions = {
       contractAddress: blogStreamContract,
@@ -26,9 +34,9 @@ function Blogs(){
       },
     }
     const message = await Moralis.executeFunction(readOptions);
-    console.log("test Blog",message)
     return message
   }
+  // getUri(2);
 async function storeUri(){
   const readOptions = {
     contractAddress: blogStreamContract,
@@ -36,30 +44,32 @@ async function storeUri(){
     abi: abi,
 }
 const blogCount = await Moralis.executeFunction(readOptions);
-console.log("test123",blogCount)
+const n = parseInt(blogCount,16)
+console.log("test123",n)
 
 // try{
-//   for(let i=0;i<blogCount;i++){
-//    const res = fetch(getUri(i))
-//    const data = await res.json()
-//    console.log("image link",data.imgUrl)
-//    lnks.push(data.imgUrl)
-//   }
+  for(let i=0;i<n;i++){
+    const url =await getUri(i)
+    const res = await fetch(url)
+    lnks.push(url)
+  }
+  setStateUrl(lnks)
 // } catch(error){
 //   console.log(error)
 // }
 
 }
-storeUri()
- 
 
-  
+ console.log(stateUrl)
+
+  console.log("test",lnks)
   return (
     <Layout>
       <div className='py-6 grid grid-cols-2 w-full px-10 md:px-32 lg:px-52 bg-[#FAFAFB] gap-4'>
-        {lnks.map((link) => (
+        {stateUrl.map((link) => (
           <BlogCard link={link} key={link} />
         ))}
+        
       </div>
     </Layout>
   )
@@ -68,7 +78,3 @@ storeUri()
 
 
 export default Blogs
-
-
-
-

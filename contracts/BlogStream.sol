@@ -12,6 +12,7 @@ struct blogPost {
     address author;
     string blogUri;
     uint flowRate;
+    uint blogTokenId;
 }
 
 mapping(uint=>blogPost) private _blogIdToPost;
@@ -30,7 +31,7 @@ modifier ownerOnly{
   function postBlog(string memory _blogUri, uint _flowRate) public returns(uint){
      uint256 blogId = _blogIdCounter.current();
         _blogIdCounter.increment();
-        _blogIdToPost[blogId] = blogPost(msg.sender, _blogUri, _flowRate);
+        _blogIdToPost[blogId] = blogPost(msg.sender, _blogUri, _flowRate, blogId);
         setBlogUri(blogId, _blogUri);
         return blogId;
 
@@ -49,6 +50,22 @@ modifier ownerOnly{
       uint256 counter = _blogIdCounter.current();
       return counter;
   }
+
+  function totalCreated() public view returns (blogPost[] memory) {
+        uint totalItemCount = _blogIdCounter.current();
+        uint currentIndex = 0;
+        
+        blogPost[] memory items = new blogPost[](totalItemCount);
+        for (uint i = 0; i < totalItemCount; i++) {
+            
+                uint currentId = i ;
+                blogPost storage currentItem = _blogIdToPost[currentId];
+                items[currentIndex] = currentItem;
+                currentIndex += 1;
+            
+        }
+        return items;
+    }
 
 }
 

@@ -10,7 +10,7 @@ import Account from '../components/Account'
 import Web3 from 'web3';
 var Contract = require('web3-eth-contract');
 import {BlogABI as abi} from '../ABI/Blog'
-const blogStreamContract = "0x6293DC62FBda245d33EA22944b9968911657373b";
+const blogStreamContract = "0xd8f853912c0903cd8890ab8795210f462321f68f";
 
 
 // const client = ipfsHttpClient('https://ipfs.infura.io:5001/api/v0')
@@ -62,7 +62,8 @@ const sendOptions = {
   abi: abi,
   params: {
     _blogUri: blogUri,
-    _flowRate: flowrate
+    _flowRate: flowrate,
+    
   }
 }
 const transaction = await Moralis.executeFunction(sendOptions);
