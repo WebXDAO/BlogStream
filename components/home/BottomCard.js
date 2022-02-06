@@ -3,7 +3,7 @@ import Polygon from '../../public/landingpage/polygon.svg'
 import Ethereum from '../../public/landingpage/ethereum.svg'
 const BottomCard = () => {
   return (
-    <div className='flex w-full my-6'>
+    <div className='flex w-full my-10'>
       <div className='bottom-card mx-auto -z-20 w-[85%] h-80 relative rounded-2xl'>
         <div className='absolute left-1/3 top-10 blur-3xl bg-blend-multiply rounded-full -z-10 bg-[#A222C0] w-32 h-24 opacity-60' />
         <div className='absolute right-32 bottom-10 blur-3xl bg-blend-multiply rounded-full -z-10 bg-[#A222C0] w-32 h-24 opacity-60' />
