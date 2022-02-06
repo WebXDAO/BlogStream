@@ -4,10 +4,10 @@ const articleData = [
   {
     id: 1,
     subject:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
-    author: "Sreekar Sarvepalli",
+      "We launched a new global open source community called Web3 Community in September. And now Web3 Community is a group of 250+ open source and blockchain enthusiasts, learning and growing together.",
+    author: "Ritvik Shukla",
     pfpSrc: "/landingpage/hottestguy.png",
-    position: "Blockchain Specialist",
+    position: "Student|Poet|Writer|Singer",
   },
   {
     id: 2,
