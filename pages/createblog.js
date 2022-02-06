@@ -10,7 +10,7 @@ import Account from '../components/Account'
 import Web3 from 'web3';
 var Contract = require('web3-eth-contract');
 import {BlogABI as abi} from '../ABI/Blog'
-const blogStreamContract = "0xd8f853912c0903cd8890ab8795210f462321f68f";
+const blogStreamContract = "0x0d74e2a84374aa98bd5526287575222c63824744";
 
 
 // const client = ipfsHttpClient('https://ipfs.infura.io:5001/api/v0')

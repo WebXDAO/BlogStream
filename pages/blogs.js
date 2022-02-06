@@ -4,8 +4,15 @@ import BlogCard from '../components/global/BlogCard'
 import Layout from '../components/global/Layout'
 import { BlogABI as abi } from '../ABI/Blog'
 import Moralis from 'moralis'
+import { Framework } from '@superfluid-finance/sdk-core'
+import Web3Modal from 'web3modal'
+import { Web3Provider } from '@ethersproject/providers'
+const web3ModalRawProvider = await web3Modal.connect()
+const web3ModalProvider = new Web3Provider(web3ModalRawProvider, 'any')
 
-const blogStreamContract = '0xd8f853912c0903cd8890ab8795210f462321f68f'
+const superFluidUrl = 'https://rinkeby.infura.io/v3/3957be6fa62146bfb3b79106fc139965'
+const customHttpProvider = new ethers.providers.JsonRpcProvider(superFluidUrl)
+const blogStreamContract = '0x0d74e2a84374aa98bd5526287575222c63824744'
 
 function Blogs() {
   const {
@@ -27,6 +34,53 @@ function Blogs() {
       storeUri()
     }
   }, [isAuthenticated, isWeb3Enabled])
+
+  async function createNewFlow(recipient, flowRate) {
+    const sf = await Framework.create({
+      networkName: 'matic',
+      provider: web3ModalProvider
+    })
+  }
+
+  const web3ModalSigner = sf.createSigner({ web3Provider: web3ModalProvider })
+  const USDCx = '0xCAa7349CEA390F89641fe306D93591f87595dc1F'
+  const MATICx = '0x3aD736904E9e65189c3000c7DD2c8AC8bB7cD4e3'
+
+  try {
+    const createFlowOperation = sf.cfaV1.createFlow({
+      flowRate: flowRate,
+      receiver: recipient,
+      superToken: USDCx
+      // userData?: string
+    })
+
+    const deleteFlowOperation = sf.cfaV1.deleteFlow({
+      sender: account,
+      receiver: recipient,
+      superToken: USDCx
+    })
+
+    console.log('Creating your stream...')
+
+    const result = await createFlowOperation.exec(signer)
+    console.log(result)
+
+    console.log(
+      `Congrats - you've just created a money stream!
+      View Your Stream At: https://app.superfluid.finance/dashboard/${recipient}
+      Network: Rinkeby
+      Super Token: DAIx
+      Sender: ${account},
+      Receiver: ${recipient},
+      FlowRate: ${flowRate}
+      `
+    )
+  } catch (error) {
+    console.log(
+      "Hmmm, your transaction threw an error. Make sure that this stream does not already exist, and that you've entered a valid Ethereum address!"
+    )
+    console.error(error)
+  }
 
   // if (isInitialized && isAuthenticated && !isWeb3Enabled) {
   //   enableWeb3();
