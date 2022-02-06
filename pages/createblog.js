@@ -34,13 +34,43 @@ function CreateBlog() {
   }, [isAuthenticated, isWeb3Enabled])
 
 
+  // const ethEnabled = async () => {
+  //   if (window.ethereum) {
+  //     await window.ethereum.request({method: 'eth_requestAccounts'});
+  //     window.web3 = new Web3(window.ethereum);
+  //     return true;
+  //   }
+  //   return false;
+  // }
+
+
+
   async function uploadToChain(blogUri, flowrate){
-    await Moralis.enableWeb3();
-const web3 = new Web3(window.ethereum)
-var instance = new web3.eth.Contract(abi, blogStreamContract);
-    const reciept = await instance.methods.postBlog(blogUri, flowrate).send({from});
-    return reciept
+  const connectorId = window.localStorage.getItem('connectorId')
+  //   const provider = await Moralis.enableWeb3({ provider: connectorId });
+  //   const ethers = Moralis.web3Library
+  //   const instance = new ethers.Contract(abi, blogStreamContract, provider);
+  //   const reciept = await instance.postBlog(blogUri, flowrate);
+  //   return reciept;
+//   const web3js = await Moralis.enableWeb3({ provider: connectorId });
+// var instance = new web3js.eth.Contract(abi, blogStreamContract);
+// console.log(instance)
+//     const reciept = await instance.methods.postBlog(blogUri, flowrate);
+//     return reciept
+const sendOptions = {
+  contractAddress: blogStreamContract,
+  functionName: "postBlog",
+  abi: abi,
+  params: {
+    _blogUri: blogUri,
+    _flowRate: flowrate
   }
+}
+const transaction = await Moralis.executeFunction(sendOptions);
+console.log(transaction.hash)
+await transaction.wait();
+
+}
 
   async function onChange(e) {
     try {
@@ -93,7 +123,8 @@ var instance = new web3.eth.Contract(abi, blogStreamContract);
       const blog = new Moralis.File('blog.json', { base64: btoa(JSON.stringify(metadata)) })
       await blog.saveIPFS()
       console.log('blog', blog.ipfs())
-      setUri(blog.ipfs())
+    uploadToChain(blog.ipfs(), 10000)
+
     } catch (error) {
       console.log('Blog Error', error)
     }
@@ -101,7 +132,6 @@ var instance = new web3.eth.Contract(abi, blogStreamContract);
     setFileUrl(null)
     setTitle('')
     setValue('')
-    uploadToChain(uri, 10000)
   }
   return !isAuthenticated ? (
     <div className='h-screen flex bg-gray-300'>
