@@ -20,18 +20,27 @@ const Header = () => {
           >
             {isAuthenticated ? "Dashboard" : "Home"}
           </a>
-          <a href="#" className="text-base md:mx-6 font-medium text-gray-900">
+          <a
+            href="https://github.com/WebXDAO/BlogStream"
+            className="text-base md:mx-5 font-medium text-gray-900"
+          >
             About
           </a>
-          <a href="#" className="text-base md:mx-6 font-medium text-gray-900">
+          <a
+            href="https://blogstream-docs.netlify.app/"
+            className="text-base md:mx-5 font-medium text-gray-900"
+          >
             Docs
           </a>
-          <a href="#" className="text-base md:mx-6 font-medium text-gray-900">
+          <a
+            href="/blogs"
+            className="text-base md:mx-5 font-medium text-gray-900"
+          >
             Blogs
           </a>
           <a
-            href="mailto:webxdao@gmail.com"
-            className="text-base md:mx-6 font-medium text-gray-900"
+            href="https://bio.link/webxdao"
+            className="text-base md:mx-5 font-medium text-gray-900"
           >
             Contact
           </a>
