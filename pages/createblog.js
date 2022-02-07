@@ -7,11 +7,10 @@ import Layout from '../components/global/Layout'
 import Moralis from 'moralis'
 import { useMoralis } from 'react-moralis'
 import Account from '../components/Account'
-import Web3 from 'web3';
-var Contract = require('web3-eth-contract');
-import {BlogABI as abi} from '../ABI/Blog'
-const blogStreamContract = "0x0d74e2a84374aa98bd5526287575222c63824744";
-
+import Web3 from 'web3'
+var Contract = require('web3-eth-contract')
+import { BlogABI as abi } from '../ABI/Blog'
+const blogStreamContract = '0x0d74e2a84374aa98bd5526287575222c63824744'
 
 // const client = ipfsHttpClient('https://ipfs.infura.io:5001/api/v0')
 const MDEditor = dynamic(() => import('@uiw/react-md-editor'), { ssr: false })
@@ -23,7 +22,6 @@ function CreateBlog() {
   const [flowRate, setFlowRate] = useState(0)
   const [fileURL, setFileUrl] = useState(null)
 
-
   const { isWeb3Enabled, enableWeb3, isAuthenticated, isWeb3EnableLoading, account } = useMoralis()
 
   useEffect(() => {
@@ -31,7 +29,6 @@ function CreateBlog() {
     if (isAuthenticated && !isWeb3Enabled && !isWeb3EnableLoading)
       enableWeb3({ provider: connectorId })
   }, [isAuthenticated, isWeb3Enabled])
-
 
   // const ethEnabled = async () => {
   //   if (window.ethereum) {
@@ -42,35 +39,31 @@ function CreateBlog() {
   //   return false;
   // }
 
-
-
-  async function uploadToChain(blogUri, flowrate){
-  const connectorId = window.localStorage.getItem('connectorId')
-  //   const provider = await Moralis.enableWeb3({ provider: connectorId });
-  //   const ethers = Moralis.web3Library
-  //   const instance = new ethers.Contract(abi, blogStreamContract, provider);
-  //   const reciept = await instance.postBlog(blogUri, flowrate);
-  //   return reciept;
-//   const web3js = await Moralis.enableWeb3({ provider: connectorId });
-// var instance = new web3js.eth.Contract(abi, blogStreamContract);
-// console.log(instance)
-//     const reciept = await instance.methods.postBlog(blogUri, flowrate);
-//     return reciept
-const sendOptions = {
-  contractAddress: blogStreamContract,
-  functionName: "postBlog",
-  abi: abi,
-  params: {
-    _blogUri: blogUri,
-    _flowRate: flowrate,
-    
+  async function uploadToChain(blogUri, flowrate) {
+    const connectorId = window.localStorage.getItem('connectorId')
+    //   const provider = await Moralis.enableWeb3({ provider: connectorId });
+    //   const ethers = Moralis.web3Library
+    //   const instance = new ethers.Contract(abi, blogStreamContract, provider);
+    //   const reciept = await instance.postBlog(blogUri, flowrate);
+    //   return reciept;
+    //   const web3js = await Moralis.enableWeb3({ provider: connectorId });
+    // var instance = new web3js.eth.Contract(abi, blogStreamContract);
+    // console.log(instance)
+    //     const reciept = await instance.methods.postBlog(blogUri, flowrate);
+    //     return reciept
+    const sendOptions = {
+      contractAddress: blogStreamContract,
+      functionName: 'postBlog',
+      abi: abi,
+      params: {
+        _blogUri: blogUri,
+        _flowRate: flowrate
+      }
+    }
+    const transaction = await Moralis.executeFunction(sendOptions)
+    console.log(transaction.hash)
+    await transaction.wait()
   }
-}
-const transaction = await Moralis.executeFunction(sendOptions);
-console.log(transaction.hash)
-await transaction.wait();
-
-}
 
   async function onChange(e) {
     try {
@@ -127,8 +120,7 @@ await transaction.wait();
       })
       await blog.saveIPFS()
       console.log('blog', blog.ipfs())
-    uploadToChain(blog.ipfs(), flowRate)
-
+      uploadToChain(blog.ipfs(), flowRate)
     } catch (error) {
       console.log('Blog Error', error)
     }

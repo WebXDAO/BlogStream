@@ -5,10 +5,11 @@ import { Dialog, Transition } from '@headlessui/react'
 //open,setOpen - for the state of modal visible/not visible
 //title - Heading of the modal
 //children - component that should be in the body
-const Modal = ({ open, setOpen, title, children, isBlog = false , deleteFlow}) => {
+const Modal = ({ open, setOpen, title, children, isBlog = false, deleteFlow, author }) => {
   const handleClose = () => {
     if (isBlog) {
-      deleteFlow()
+      // console.log(deleteFlow)
+      deleteFlow(author)
     }
     setOpen(false)
   }
@@ -16,7 +17,7 @@ const Modal = ({ open, setOpen, title, children, isBlog = false , deleteFlow}) =
   return (
     <>
       <Transition.Root show={open} as={Fragment}>
-        <Dialog as='div' className='fixed z-50 inset-0 overflow-y-auto' onClose={setOpen}>
+        <Dialog as='div' className='fixed z-50 inset-0 overflow-y-auto' onClose={handleClose}>
           <div className='flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0'>
             <Transition.Child
               as={Fragment}
