@@ -5,10 +5,10 @@ import { Dialog, Transition } from '@headlessui/react'
 //open,setOpen - for the state of modal visible/not visible
 //title - Heading of the modal
 //children - component that should be in the body
-const Modal = ({ open, setOpen, title, children, isBlog = false }) => {
+const Modal = ({ open, setOpen, title, children, isBlog = false , deleteFlow}) => {
   const handleClose = () => {
     if (isBlog) {
-      //add superfluid stop flow
+      deleteFlow()
     }
     setOpen(false)
   }
