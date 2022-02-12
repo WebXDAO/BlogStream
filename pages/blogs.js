@@ -14,17 +14,9 @@ import { ethers } from 'ethers'
 const blogStreamContract = '0x0d74e2a84374aa98bd5526287575222c63824744'
 
 function Blogs() {
-  const {
-    isWeb3Enabled,
-    enableWeb3,
-    isAuthenticated,
-    isWeb3EnableLoading,
-    account,
-    isInitialized
-  } = useMoralis()
-  const lnks = []
+  const { isWeb3Enabled, enableWeb3, isAuthenticated, isWeb3EnableLoading, account } = useMoralis()
   const [stateUrl, setStateUrl] = useState([])
-  // const [connector, setConnector] = useState([])
+
   useEffect(() => {
     const connectorId = window.localStorage.getItem('connectorId')
     if (isAuthenticated && !isWeb3Enabled && !isWeb3EnableLoading)
@@ -48,12 +40,10 @@ function Blogs() {
       })
       const web3ModalSigner = sf.createSigner({ web3Provider: web3ModalProvider })
       const USDCx = '0x42bb40bF79730451B11f6De1CbA222F17b87Afd7'
-      // const MATICx = '0x3aD736904E9e65189c3000c7DD2c8AC8bB7cD4e3'
       const createFlowOperation = sf.cfaV1.createFlow({
         flowRate: flowRate.toString(),
         receiver: recipient,
         superToken: USDCx
-        // userData?: string
       })
       console.log('Creating your stream...')
       const result = await createFlowOperation.exec(signer)
@@ -107,25 +97,24 @@ function Blogs() {
     return message
   }
   async function storeUri() {
-    const readOptions = {
-      contractAddress: blogStreamContract,
-      functionName: 'getBlogCounter',
-      abi: abi
+    try {
+      const readOptions = {
+        contractAddress: blogStreamContract,
+        functionName: 'getBlogCounter',
+        abi: abi
+      }
+      const blogCount = await Moralis.executeFunction(readOptions)
+      const n = parseInt(blogCount, 16)
+      console.log('test123', n)
+      const links = []
+      for (let i = 0; i < n; i++) {
+        const url = await getUri(i)
+        links.push(url)
+      }
+      setStateUrl(links)
+    } catch (error) {
+      console.log('Store URI', error)
     }
-    const blogCount = await Moralis.executeFunction(readOptions)
-    const n = parseInt(blogCount, 16)
-    console.log('test123', n)
-
-    // try{
-    for (let i = 0; i < n; i++) {
-      const url = await getUri(i)
-      const res = await fetch(url)
-      lnks.push(url)
-    }
-    setStateUrl(lnks)
-    // } catch(error){
-    //   console.log(error)
-    // }
   }
   return (
     <Layout>

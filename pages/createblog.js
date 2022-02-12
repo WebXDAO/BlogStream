@@ -2,17 +2,14 @@ import '@uiw/react-md-editor/markdown-editor.css'
 import '@uiw/react-markdown-preview/markdown.css'
 import dynamic from 'next/dynamic'
 import { useEffect, useState } from 'react'
-// import { create as ipfsHttpClient } from 'ipfs-http-client'
 import Layout from '../components/global/Layout'
 import Moralis from 'moralis'
 import { useMoralis } from 'react-moralis'
 import Account from '../components/Account'
-import Web3 from 'web3'
-var Contract = require('web3-eth-contract')
 import { BlogABI as abi } from '../ABI/Blog'
+
 const blogStreamContract = '0x0d74e2a84374aa98bd5526287575222c63824744'
 
-// const client = ipfsHttpClient('https://ipfs.infura.io:5001/api/v0')
 const MDEditor = dynamic(() => import('@uiw/react-md-editor'), { ssr: false })
 
 function CreateBlog() {
@@ -30,27 +27,8 @@ function CreateBlog() {
       enableWeb3({ provider: connectorId })
   }, [isAuthenticated, isWeb3Enabled])
 
-  // const ethEnabled = async () => {
-  //   if (window.ethereum) {
-  //     await window.ethereum.request({method: 'eth_requestAccounts'});
-  //     window.web3 = new Web3(window.ethereum);
-  //     return true;
-  //   }
-  //   return false;
-  // }
-
   async function uploadToChain(blogUri, flowrate) {
     const connectorId = window.localStorage.getItem('connectorId')
-    //   const provider = await Moralis.enableWeb3({ provider: connectorId });
-    //   const ethers = Moralis.web3Library
-    //   const instance = new ethers.Contract(abi, blogStreamContract, provider);
-    //   const reciept = await instance.postBlog(blogUri, flowrate);
-    //   return reciept;
-    //   const web3js = await Moralis.enableWeb3({ provider: connectorId });
-    // var instance = new web3js.eth.Contract(abi, blogStreamContract);
-    // console.log(instance)
-    //     const reciept = await instance.methods.postBlog(blogUri, flowrate);
-    //     return reciept
     const sendOptions = {
       contractAddress: blogStreamContract,
       functionName: 'postBlog',
@@ -61,7 +39,7 @@ function CreateBlog() {
       }
     }
     const transaction = await Moralis.executeFunction(sendOptions)
-    console.log(transaction.hash)
+    console.log('Image Transaction Hash', transaction.hash)
     await transaction.wait()
   }
 
@@ -76,34 +54,8 @@ function CreateBlog() {
     } catch (error) {
       console.log('Image Upload Error', error)
     }
-    // try {
-    //   const added = await client.add(file, {
-    //     progress: (prog) => console.log(`received: ${prog}`)
-    //   })
-    //   const url = `https://ipfs.infura.io/ipfs/${added.path}`
-    //   setFileUrl(url)
-    // } catch (error) {
-    //   console.log('Error uploading file: ', error)
-    // }
   }
   async function createData() {
-    //   if (!value || !fileUrl) return
-    //   /* first, upload to IPFS */
-    //   const data = JSON.stringify({
-    //     value,
-    //     title,
-    //     author: account,
-    //     createdAt: new Date(),
-    //     image: fileUrl
-    //   })
-    //   try {
-    //     const added = await client.add(data)
-    //     const url = `https://ipfs.infura.io/ipfs/${added.path}`
-    //     /* after file is uploaded to IPFS, pass the URL to save it on Polygon */
-    //     console.log(url)
-    //   } catch (error) {
-    //     console.log('Error uploading file: ', error)
-    //   }
     if (!value || !title || !fileURL) return
     setIsLoading(true)
     try {
