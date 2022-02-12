@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import Blog from '../global/Blog'
 import Modal from '../Account/Modal'
@@ -48,16 +47,14 @@ const BlogCard = ({ link, createNewFlow, deleteFlow }) => {
   }
 
   return (
-    <div className='bg-white p-4 rounded-xl col-span-2 w-full h-fit'>
+    <div className='bg-white p-4 rounded-xl col-span-2 w-full h-fit shadow-md'>
       {linkData ? (
         <div className='flex flex-col space-y-4'>
           <div className='w-full rounded-lg'>
-            <Image
+            <img
               src={linkData.imgURL}
-              className='object-contain mx-auto my-4'
-              width={1080}
-              height={480}
-              layout='responsive'
+              alt={linkData.title}
+              className='object-contain mx-auto my-4 w-3/4 max-w-sm lg:max-w-6xl max-h-48'
             />
           </div>
           <h4 className='text-2xl lg:text-4xl text-center'>{linkData.title}</h4>
