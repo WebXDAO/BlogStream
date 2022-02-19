@@ -26,6 +26,18 @@ function Blogs() {
     }
   }, [isAuthenticated, isWeb3Enabled])
 
+  function calculateFlowRate(amountInEther) {
+    if (typeof Number(amountInEther) !== 'number' || isNaN(Number(amountInEther)) === true) {
+      console.log(typeof Number(amountInEther))
+      alert('You can only calculate a flowRate based on a number')
+      return
+    } else if (typeof Number(amountInEther) === 'number') {
+      const monthlyAmount = ethers.utils.parseEther(amountInEther.toString())
+      const calculatedFlowRate = Math.floor(monthlyAmount / 3600 / 24 / 30)
+      return calculatedFlowRate
+    }
+  }
+
   async function createNewFlow(recipient, flowRate) {
     try {
       const web3Modal = new Web3Modal()
@@ -38,6 +50,8 @@ function Blogs() {
         networkName: 'mumbai',
         provider: web3ModalProvider
       })
+      // let amt = calculateFlowRate(flowRate).toString()
+      // console.log(amt)
       const web3ModalSigner = sf.createSigner({ web3Provider: web3ModalProvider })
       const USDCx = '0x42bb40bF79730451B11f6De1CbA222F17b87Afd7'
       const createFlowOperation = sf.cfaV1.createFlow({
@@ -46,7 +60,7 @@ function Blogs() {
         superToken: USDCx
       })
       console.log('Creating your stream...')
-      const result = await createFlowOperation.exec(signer)
+      const result = await createFlowOperation.exec(web3ModalSigner)
       console.log(result)
       return result
     } catch (err) {

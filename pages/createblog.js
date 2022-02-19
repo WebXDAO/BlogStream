@@ -7,6 +7,7 @@ import Moralis from 'moralis'
 import { useMoralis } from 'react-moralis'
 import Account from '../components/Account'
 import { BlogABI as abi } from '../ABI/Blog'
+import { ethers } from 'ethers'
 
 const blogStreamContract = '0x0d74e2a84374aa98bd5526287575222c63824744'
 
@@ -27,6 +28,17 @@ function CreateBlog() {
       enableWeb3({ provider: connectorId })
   }, [isAuthenticated, isWeb3Enabled])
 
+  function calculateFlowRate(amountInEther) {
+    if (typeof Number(amountInEther) !== 'number' || isNaN(Number(amountInEther)) === true) {
+      console.log(typeof Number(amountInEther))
+      alert('You can only calculate a flowRate based on a number')
+      return
+    } else if (typeof Number(amountInEther) === 'number') {
+      const monthlyAmount = ethers.utils.parseEther(amountInEther.toString())
+      const calculatedFlowRate = Math.floor(monthlyAmount / 3600 / 24 / 30)
+      return calculatedFlowRate
+    }
+  }
   async function uploadToChain(blogUri, flowrate) {
     const connectorId = window.localStorage.getItem('connectorId')
     const sendOptions = {
@@ -64,7 +76,7 @@ function CreateBlog() {
         author: account,
         value,
         imgURL: fileURL,
-        flowRate,
+        flowRate: calculateFlowRate(flowRate),
         createdAt: new Date()
       }
       const blog = new Moralis.File('blog.json', {
@@ -72,7 +84,7 @@ function CreateBlog() {
       })
       await blog.saveIPFS()
       console.log('blog', blog.ipfs())
-      uploadToChain(blog.ipfs(), flowRate)
+      uploadToChain(blog.ipfs(), calculateFlowRate(flowRate))
     } catch (error) {
       console.log('Blog Error', error)
     }
@@ -121,9 +133,10 @@ function CreateBlog() {
             className='shadow appearance-none border rounded w-1/3 py-4 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
             id='title'
             type='number'
+            min={0.0000001}
             value={flowRate}
             onChange={(e) => setFlowRate(e.target.value)}
-            placeholder='Flow Rate'
+            placeholder='Amount per month in Ether'
           />
         </div>
         <MDEditor height={500} value={value} onChange={setValue} />
