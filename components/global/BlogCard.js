@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import Blog from '../global/Blog'
 import Modal from '../Account/Modal'
 import { ethers } from 'ethers'
+
 const BlogCard = ({ link, createNewFlow, deleteFlow }) => {
   const [linkData, setLinkData] = useState(null)
   const [open, setOpen] = useState(false)
@@ -12,7 +13,6 @@ const BlogCard = ({ link, createNewFlow, deleteFlow }) => {
         const res = await fetch(link)
         const data = await res.json()
         setLinkData(data)
-        // console.log(data)
       } catch (error) {
         console.log('card error', link, error)
       }
@@ -21,17 +21,12 @@ const BlogCard = ({ link, createNewFlow, deleteFlow }) => {
   }, [])
 
   const handleOpen = async () => {
-    const confirmation = await createNewFlow(
-      linkData.author,
-      parseInt(linkData.flowRate) > 100000000000
-        ? parseInt(linkData.flowRate)
-        : parseInt(linkData.flowRate) * 1000000000
-    )
+    const confirmation = await createNewFlow(linkData.author, linkData.flowRate)
     if (confirmation) {
       setOpen(true)
     }
   }
-  function calculateFlowRate(amount) {
+  function flowRateToPerMonth(amount) {
     if (typeof Number(amount) !== 'number' || isNaN(Number(amount)) === true) {
       alert('You can only calculate a flowRate based on a number')
       return
@@ -39,13 +34,12 @@ const BlogCard = ({ link, createNewFlow, deleteFlow }) => {
       if (Number(amount) === 0) {
         return 0
       }
-      const amountInWei = ethers.BigNumber.from(parseInt(amount > 100 ? amount / 1000 : amount))
+      const amountInWei = ethers.BigNumber.from(amount)
       const monthlyAmount = ethers.utils.formatEther(amountInWei.toString())
       const calculatedFlowRate = monthlyAmount * 3600 * 24 * 30
-      return calculatedFlowRate
+      return Math.ceil(calculatedFlowRate)
     }
   }
-
   return (
     <div className='bg-white p-4 rounded-xl col-span-2 w-full h-fit shadow-md'>
       {linkData ? (
@@ -59,7 +53,7 @@ const BlogCard = ({ link, createNewFlow, deleteFlow }) => {
           </div>
           <h4 className='text-2xl lg:text-4xl text-center'>{linkData.title}</h4>
           <button className='bg-blue-500 rounded-lg p-3 mx-auto text-white' onClick={handleOpen}>
-            Start Flow at {linkData.flowRate}
+            Start Flow at {flowRateToPerMonth(linkData.flowRate) + ' USD/month'}
           </button>
           <Modal
             open={open}

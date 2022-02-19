@@ -13,7 +13,6 @@ const Blog = ({ link }) => {
         const res = await fetch(link)
         const data = await res.json()
         setBlogData(data)
-        console.log(data)
       } catch (error) {
         console.log('card error', error)
       }
@@ -47,7 +46,7 @@ const Blog = ({ link }) => {
         </div>
         <h4 className='text-2xl lg:text-4xl text-center my-5'>{blogData.title}</h4>
         <article className='prose-sm mx-auto'>
-          <ReactMarkdown plugins={[remarkGfm]}>{blogData.value}</ReactMarkdown>
+          <ReactMarkdown remarkPlugins={[remarkGfm]}>{blogData.value}</ReactMarkdown>
         </article>
       </div>
     </>

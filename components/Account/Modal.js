@@ -8,7 +8,6 @@ import { Dialog, Transition } from '@headlessui/react'
 const Modal = ({ open, setOpen, title, children, isBlog = false, deleteFlow, author }) => {
   const handleClose = () => {
     if (isBlog) {
-      // console.log(deleteFlow)
       deleteFlow(author)
     }
     setOpen(false)

@@ -8,10 +8,11 @@ import { Framework } from '@superfluid-finance/sdk-core'
 import Web3Modal from 'web3modal'
 import { Web3Provider } from '@ethersproject/providers'
 import { ethers } from 'ethers'
-
+import { contractAddress } from '../config'
 // const superFluidUrl = 'https://polygon-mumbai.infura.io/v3/3957be6fa62146bfb3b79106fc139965'
 // const customHttpProvider = new ethers.providers.JsonRpcProvider(superFluidUrl)
-const blogStreamContract = '0x0d74e2a84374aa98bd5526287575222c63824744'
+
+const blogStreamContract = contractAddress
 
 function Blogs() {
   const { isWeb3Enabled, enableWeb3, isAuthenticated, isWeb3EnableLoading, account } = useMoralis()
@@ -26,18 +27,6 @@ function Blogs() {
     }
   }, [isAuthenticated, isWeb3Enabled])
 
-  function calculateFlowRate(amountInEther) {
-    if (typeof Number(amountInEther) !== 'number' || isNaN(Number(amountInEther)) === true) {
-      console.log(typeof Number(amountInEther))
-      alert('You can only calculate a flowRate based on a number')
-      return
-    } else if (typeof Number(amountInEther) === 'number') {
-      const monthlyAmount = ethers.utils.parseEther(amountInEther.toString())
-      const calculatedFlowRate = Math.floor(monthlyAmount / 3600 / 24 / 30)
-      return calculatedFlowRate
-    }
-  }
-
   async function createNewFlow(recipient, flowRate) {
     try {
       const web3Modal = new Web3Modal()
@@ -51,8 +40,6 @@ function Blogs() {
         networkName: 'mumbai',
         provider: web3ModalProvider
       })
-      // let amt = calculateFlowRate(flowRate).toString()
-      // console.log(amt)
       const web3ModalSigner = sf.createSigner({ web3Provider: web3ModalProvider })
       const USDCx = '0x42bb40bF79730451B11f6De1CbA222F17b87Afd7'
       const createFlowOperation = sf.cfaV1.createFlow({
@@ -92,7 +79,6 @@ function Blogs() {
       })
       console.log('Deleting your stream...')
       const result = await deleteFlowOperation.exec(web3ModalSigner)
-      console.log(result)
       return result
     } catch (err) {
       console.log('Delete Flow', err)
@@ -120,7 +106,6 @@ function Blogs() {
       }
       const blogCount = await Moralis.executeFunction(readOptions)
       const n = parseInt(blogCount, 16)
-      console.log('test123', n)
       const links = []
       for (let i = 0; i < n; i++) {
         const url = await getUri(i)
@@ -132,8 +117,11 @@ function Blogs() {
     }
   }
   return (
-    <Layout>
+    <Layout title={'Blogs'}>
       <div className='py-6 grid grid-cols-2 w-full px-10 md:px-32 lg:px-52 bg-[#FAFAFB] gap-4'>
+        {stateUrl.length === 0 && (
+          <h1 className='mx-auto col-span-2 text-2xl my-12'>No Blogs present!!</h1>
+        )}
         {stateUrl.map((link, index) => (
           <BlogCard
             link={link}

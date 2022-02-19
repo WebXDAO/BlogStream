@@ -15,6 +15,7 @@ import YourBlogs from '../components/dashboard/YourBlogs'
 import Account from '../components/Account'
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
+import Head from 'next/head'
 
 const Dashboard = () => {
   const { data: balance } = useNativeBalance()
@@ -73,40 +74,47 @@ const Dashboard = () => {
     }
   ]
 
-  return !isAuthenticated ? (
-    <div className='h-screen flex bg-gray-300'>
-      <Account
-        className='m-auto w-1/4 bg-blue-600 text-white p-4 rounded-xl border'
-        showIcon={true}
-      />
-    </div>
-  ) : (
-    <div className='bg-[#FAFAFB] grid grid-cols-12 md:p-2 h-screen'>
-      <div className='col-span-1'>
-        <VerticalNavbar />
-      </div>
-      <div className='col-span-11 p-6 md:p-2 my-5 md:mx-2 overflow-auto'>
-        <h1 className='font-nunito text-2xl font-semibold text-[#030229]'>Dashboard</h1>
-        <div className='grid grid-cols-12 gap-4 mt-5'>
-          {info.map((data, index) => (
-            <InfoCard data={data} key={index} />
-          ))}
+  return (
+    <>
+      <Head>
+        <title>Dashboard | BlogStream</title>
+      </Head>
+      {!isAuthenticated ? (
+        <div className='h-screen flex bg-gray-300'>
+          <Account
+            className='m-auto w-1/4 bg-blue-600 text-white p-4 rounded-xl border'
+            showIcon={true}
+          />
         </div>
-        <h2 className='my-6 text-2xl font-nunito font-extrabold text-[#787878]'>Hi Sreekar!</h2>
-        <div className='grid grid-cols-12 gap-4'>
-          {buttons.map((data, index) => (
-            <ButtonCard key={data.title + index} data={data} />
-          ))}
-          <div className='col-span-12 md:col-span-4 bg-white px-5 lg:p-10 cursor-pointer drop-shadow-lg flex justify-between items-center rounded-xl'>
-            <Account showIcon={true} />
+      ) : (
+        <div className='bg-[#FAFAFB] grid grid-cols-12 md:p-2 h-screen'>
+          <div className='col-span-1'>
+            <VerticalNavbar />
+          </div>
+          <div className='col-span-11 p-6 md:p-2 my-5 md:mx-2 overflow-auto'>
+            <h1 className='font-nunito text-2xl font-semibold text-[#030229]'>Dashboard</h1>
+            <div className='grid grid-cols-12 gap-4 mt-5'>
+              {info.map((data, index) => (
+                <InfoCard data={data} key={index} />
+              ))}
+            </div>
+            <h2 className='my-6 text-2xl font-nunito font-extrabold text-[#787878]'>Hi Sreekar!</h2>
+            <div className='grid grid-cols-12 gap-4'>
+              {buttons.map((data, index) => (
+                <ButtonCard key={data.title + index} data={data} />
+              ))}
+              <div className='col-span-12 md:col-span-4 bg-white px-5 lg:p-10 cursor-pointer drop-shadow-lg flex justify-between items-center rounded-xl'>
+                <Account showIcon={true} />
+              </div>
+            </div>
+            <div className='mt-6 grid grid-cols-12 gap-4'>
+              <RecentBlogs />
+              <YourBlogs />
+            </div>
           </div>
         </div>
-        <div className='mt-6 grid grid-cols-12 gap-4'>
-          <RecentBlogs />
-          <YourBlogs />
-        </div>
-      </div>
-    </div>
+      )}
+    </>
   )
 }
 
