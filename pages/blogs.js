@@ -41,10 +41,11 @@ function Blogs() {
   async function createNewFlow(recipient, flowRate) {
     try {
       const web3Modal = new Web3Modal()
-      const connection = await web3Modal.connect()
-      const provider = new ethers.providers.Web3Provider(connection)
-      const signer = provider.getSigner()
-      const web3ModalProvider = new Web3Provider(connection, 'any')
+      // const connection = await web3Modal.connect()
+      // const provider = new ethers.providers.Web3Provider(connection)
+      // const signer = provider.getSigner()
+      const web3ModalRawProvider = await web3Modal.connect()
+      const web3ModalProvider = new Web3Provider(web3ModalRawProvider, 'any')
 
       const sf = await Framework.create({
         networkName: 'mumbai',
@@ -61,7 +62,7 @@ function Blogs() {
       })
       console.log('Creating your stream...')
       const result = await createFlowOperation.exec(web3ModalSigner)
-      console.log(result)
+      // console.log(result)
       return result
     } catch (err) {
       console.log(err)
@@ -71,9 +72,9 @@ function Blogs() {
   async function deleteFlow(recipient) {
     try {
       const web3Modal = new Web3Modal()
-      const connection = await web3Modal.connect()
-      const provider = new ethers.providers.Web3Provider(connection)
-      const signer = provider.getSigner()
+      // const connection = await web3Modal.connect()
+      // const provider = new ethers.providers.Web3Provider(connection)
+      // const signer = provider.getSigner()
       const web3ModalRawProvider = await web3Modal.connect()
       const web3ModalProvider = new Web3Provider(web3ModalRawProvider, 'any')
 
@@ -90,7 +91,7 @@ function Blogs() {
         superToken: USDCx
       })
       console.log('Deleting your stream...')
-      const result = await deleteFlowOperation.exec(signer)
+      const result = await deleteFlowOperation.exec(web3ModalSigner)
       console.log(result)
       return result
     } catch (err) {

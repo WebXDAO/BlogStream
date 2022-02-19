@@ -17,7 +17,7 @@ function CreateBlog() {
   const [isLoading, setIsLoading] = useState(null)
   const [value, setValue] = useState('')
   const [title, setTitle] = useState('')
-  const [flowRate, setFlowRate] = useState(0)
+  const [flowRate, setFlowRate] = useState(0.000000001)
   const [fileURL, setFileUrl] = useState(null)
 
   const { isWeb3Enabled, enableWeb3, isAuthenticated, isWeb3EnableLoading, account } = useMoralis()
@@ -39,6 +39,7 @@ function CreateBlog() {
       return calculatedFlowRate
     }
   }
+
   async function uploadToChain(blogUri, flowrate) {
     const connectorId = window.localStorage.getItem('connectorId')
     const sendOptions = {
@@ -133,7 +134,7 @@ function CreateBlog() {
             className='shadow appearance-none border rounded w-1/3 py-4 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
             id='title'
             type='number'
-            min={0.0000001}
+            min={0.0000000001}
             value={flowRate}
             onChange={(e) => setFlowRate(e.target.value)}
             placeholder='Amount per month in Ether'
