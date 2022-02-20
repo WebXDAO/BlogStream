@@ -7,7 +7,7 @@ module.exports = {
     hardhat: {
       chainId: 1337
     }
-    //these will be used for deployment later on
+    // these will be used for deployment later on
     // mumbai: {
     //   url: 'https://rpc-mumbai.matic.today',
     //   accounts: [process.env.pk]
