@@ -3,7 +3,6 @@ import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import { useMoralis } from 'react-moralis'
 import Account from '../../components/Account'
-import Image from 'next/image'
 
 const Blog = ({ link }) => {
   const { isWeb3Enabled, enableWeb3, isAuthenticated, isWeb3EnableLoading } = useMoralis()
@@ -14,7 +13,6 @@ const Blog = ({ link }) => {
         const res = await fetch(link)
         const data = await res.json()
         setBlogData(data)
-        console.log(data)
       } catch (error) {
         console.log('card error', error)
       }
@@ -40,17 +38,15 @@ const Blog = ({ link }) => {
       {/* <div className='py-6 grid grid-cols-2 w-full px-10 md:px-32 lg:px-64 gap-4'> */}
       <div className='flex flex-col'>
         <div className='block w-full h-1/2 px-28'>
-          <Image
+          <img
             src={blogData.imgURL}
-            className='object-cover mx-auto my-4'
-            width={1080}
-            height={480}
-            layout='responsive'
+            className='object-contain mx-auto my-4 w-3/4 max-w-sm lg:max-w-6xl max-h-48'
+            alt={blogData.title}
           />
         </div>
         <h4 className='text-2xl lg:text-4xl text-center my-5'>{blogData.title}</h4>
         <article className='prose-sm mx-auto'>
-          <ReactMarkdown plugins={[remarkGfm]}>{blogData.value}</ReactMarkdown>
+          <ReactMarkdown remarkPlugins={[remarkGfm]}>{blogData.value}</ReactMarkdown>
         </article>
       </div>
     </>
