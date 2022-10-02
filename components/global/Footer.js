@@ -122,7 +122,7 @@ export default function Footer() {
 
                 <li>
                   <a
-                    href="https://www.linkedin.com/company/web3community/"
+                    href="https://www.linkedin.com/company/WebXDAO/"
                     className="flex text-base  hover:text-gray-900"
                   >
                     <svg
