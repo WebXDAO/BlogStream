@@ -4,7 +4,7 @@ const articleData = [
   {
     id: 1,
     subject:
-      "We launched a new global open source community called Web3 Community in September. And now Web3 Community is a group of 250+ open source and blockchain enthusiasts, learning and growing together.",
+      "We launched a new global open source community called WebXDAO in September. And now WebXDAO is a group of 250+ open source and blockchain enthusiasts, learning and growing together.",
     author: "Ritvik Shukla",
     pfpSrc: "/landingpage/hottestguy.png",
     position: "Student | Poet | Writer | Singer",
@@ -13,7 +13,7 @@ const articleData = [
   {
     id: 2,
     subject:
-      "Dev Protocol is now open to Open Source Community, everyone can join on GitHub organization and chat on their Discord server. We are making the Web3 Community an educational platform for aspiring blockchain developers...",
+      "Dev Protocol is now open to Open Source Community, everyone can join on GitHub organization and chat on their Discord server. We are making the WebXDAO an educational platform for aspiring blockchain developers...",
     author: "Vincent Villafuerte",
     pfpSrc: "/landingpage/vincent villafuerte.png",
     position: "Blockchain Specialist",
@@ -22,16 +22,16 @@ const articleData = [
   {
     id: 3,
     subject:
-      "Accelerate Your Learnings With Web3Community and Build Your First Web 3.0 App. What's Web 3.0 all about? For this question, We'd need to first deep dive into Web2.0, for a better understanding of the web.",
+      "Accelerate Your Learnings With WebXDAO and Build Your First Web 3.0 App. What's Web 3.0 all about? For this question, We'd need to first deep dive into Web2.0, for a better understanding of the web.",
     author: "Krish Gupta",
     pfpSrc: "/landingpage/krish gupta.png",
     position: "Blockchain Specialist",
-    url: "https://dev.to/webxdao/accelerate-your-learnings-with-web3community-and-build-your-first-web-3-0-app-1810",
+    url: "https://dev.to/webxdao/accelerate-your-learnings-with-WebXDAO-and-build-your-first-web-3-0-app-1810",
   },
   {
     id: 4,
     subject:
-      "Hacktoberfest starts today. This year Web3Community is excited to take part in the fest for the first time. An excellent opportunity for everyone to learn more about the open-source environment...",
+      "Hacktoberfest starts today. This year WebXDAO is excited to take part in the fest for the first time. An excellent opportunity for everyone to learn more about the open-source environment...",
     author: "Ritvik Shukla",
     pfpSrc: "/landingpage/hottestguy.png",
     position: "Student | Poet | Writer | Singer",
@@ -40,7 +40,7 @@ const articleData = [
   {
     id: 5,
     subject:
-      "We are launching a new global open source community called Web3 Community that will be focus on Web3, Blockchain, and somewhat related to decentralized applications (Dapp).",
+      "We are launching a new global open source community called WebXDAO that will be focus on Web3, Blockchain, and somewhat related to decentralized applications (Dapp).",
     author: "Vincent Villafuerte",
     pfpSrc: "/landingpage/vincent villafuerte.png",
     position: "Blockchain Specialist",
