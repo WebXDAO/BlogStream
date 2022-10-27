@@ -25,13 +25,10 @@ const Hero = () => {
             </a>
           </div>
           <div className="hidden lg:inline-block w-1/2 h-full">
-            <Image
+            <img
+              className="object-contain mx-auto my-4"
               src="/landingpage/sally.png"
               alt="model"
-              height={2160}
-              width={2160}
-              objectFit="contain"
-              layout="intrinsic"
             />
           </div>
         </div>
